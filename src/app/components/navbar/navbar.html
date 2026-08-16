@@ -1,0 +1,96 @@
+<nav class="navbar">
+
+  <div class="navbar-left">
+
+    <div class="logo">
+      BADCOW
+    </div>
+
+    <a routerLink="/home">
+      Home
+    </a>
+
+    <a>
+      Favorites
+    </a>
+
+    <a>
+      My Bookings
+    </a>
+
+  </div>
+
+  <div class="navbar-right">
+
+    <div class="profile-button" (click)="toggleProfile()">
+
+      <div class="avatar">
+        {{ userName.charAt(0).toUpperCase() }}
+      </div>
+
+      <span>
+        {{ userName }}
+      </span>
+
+      <span>⌄</span>
+
+    </div>
+
+
+    <div class="profile-menu" *ngIf="showProfile">
+
+      <div class="profile-header">
+
+        <div class="large-avatar">
+          {{ userName.charAt(0).toUpperCase() }}
+        </div>
+
+        <div>
+
+          <strong>
+            {{ userName }}
+          </strong>
+
+          <small>
+            {{ userEmail }}
+          </small>
+
+        </div>
+
+      </div>
+
+      <hr>
+
+      <button (click)="openProfile()">
+
+        👤 My Profile
+
+      </button>
+
+      <button (click)="openFavorites()">
+
+        ❤️ Favorites
+
+      </button>
+
+      <button (click)="openBookings()">
+        📅 My Bookings
+      </button>
+
+      <button (click)="openAdminDashboard()">
+        📊 Admin Dashboard
+      </button>
+
+      <hr>
+
+      <button class="logout-btn" (click)="logout()">
+
+        🚪 Logout
+
+      </button>
+
+    </div>
+
+  </div>
+
+</nav>

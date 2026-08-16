@@ -1,0 +1,87 @@
+<!-- <div class="card shadow room-card">
+
+    <img
+        [src]="'http://localhost:8080/uploads/' + room.imageUrl"
+        class="card-img-top room-img"
+        alt="Room">
+
+    <div class="card-body">
+
+        <h5>{{room.title}}</h5>
+
+        <p>📍 {{room.location}}</p>
+
+        <h4 class="text-success">₹ {{room.rent}}</h4>
+
+        <p>{{room.roomType}}</p>
+
+        <p>{{room.description}}</p>
+
+        <button class="btn btn-primary w-100 mb-2">
+            View Details
+        </button>
+
+        <button class="btn btn-success w-100 mb-2">
+            Book Now
+        </button>
+
+        <button class="btn btn-outline-danger w-100">
+            ❤️ Favorite
+        </button>
+
+    </div>
+
+</div> -->
+
+<div class="card shadow room-card">
+
+  <div class="image-wrapper">
+
+    <img
+      [src]="'http://localhost:8080/uploads/' + room.imageUrl"
+      class="card-img-top room-img"
+      alt="Room">
+
+    <span
+      class="availability-badge"
+      [class.unavailable]="!room.available">
+
+      {{ room.available ? 'Available' : 'Not Available' }}
+
+    </span>
+
+  </div>
+
+  <div class="card-body">
+
+    <h5>{{ room.title }}</h5>
+
+    <p class="location">
+      <i class="fa-solid fa-location-dot"></i>
+      {{ room.location }}
+    </p>
+
+    <h4 class="rent">
+      ₹{{ room.rent }}
+      <small>/month</small>
+    </h4>
+
+    <p class="room-type">
+      {{ room.roomType }}
+    </p>
+
+    <p class="description">
+      {{ room.description }}
+    </p>
+
+    <button
+      class="btn btn-primary w-100"
+      (click)="viewDetails()">
+
+      View Details
+
+    </button>
+
+  </div>
+
+</div>

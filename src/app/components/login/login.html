@@ -1,0 +1,202 @@
+<div class="login-page">
+
+  <div class="login-card">
+
+    <h1>BADCOW</h1>
+
+    <p class="subtitle">Find Your Perfect Room</p>
+
+    <!-- LOGIN -->
+    <div *ngIf="mode === 'login'">
+
+      <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="Email">
+
+      <div class="password-box">
+
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="password"
+          placeholder="Password">
+
+        <span
+          class="password-icon"
+          (click)="showPassword = !showPassword">
+
+          <!-- {{ showPassword ? '👁️' : '🙈' }} -->
+
+        </span>
+
+      </div>
+
+      <button
+        class="login-btn"
+        (click)="login()">
+
+        Login
+
+      </button>
+
+      <p
+        class="error"
+        *ngIf="errorMessage">
+
+        {{ errorMessage }}
+
+      </p>
+
+      <div class="links">
+
+        <a (click)="mode = 'forgot'">
+          Forgot Password?
+        </a>
+
+        <p>
+          New User?
+          <a (click)="mode = 'register'">
+            Register
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- REGISTER -->
+    <div *ngIf="mode === 'register'">
+
+      <h2>Create Account</h2>
+
+      <input
+        type="text"
+        [(ngModel)]="registerName"
+        placeholder="Full Name">
+
+      <input
+        type="email"
+        [(ngModel)]="registerEmail"
+        placeholder="Email">
+
+      <input
+        type="text"
+        [(ngModel)]="registerPhone"
+        placeholder="Phone Number">
+
+      <div class="password-box">
+
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="registerPassword"
+          placeholder="Password">
+
+        <span
+          class="password-icon"
+          (click)="showPassword = !showPassword">
+
+          {{ showPassword ? '👁️' : '🙈' }}
+
+        </span>
+
+      </div>
+
+      <select [(ngModel)]="registerRole">
+
+        <option value="CUSTOMER">
+          Customer
+        </option>
+
+        <option value="OWNER">
+          Owner
+        </option>
+
+      </select>
+
+      <button
+        class="login-btn"
+        (click)="register()">
+
+        Register
+
+      </button>
+
+      <p
+        class="success"
+        *ngIf="successMessage">
+
+        {{ successMessage }}
+
+      </p>
+
+      <p
+        class="error"
+        *ngIf="errorMessage">
+
+        {{ errorMessage }}
+
+      </p>
+
+      <div class="links">
+
+        <a (click)="mode = 'login'">
+          ← Back to Login
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- FORGOT PASSWORD -->
+    <div *ngIf="mode === 'forgot'">
+
+      <h2>Reset Password</h2>
+
+      <p class="forgot-text">
+        Enter your registered email address.
+      </p>
+
+      <input
+        type="email"
+        [(ngModel)]="forgotEmail"
+        placeholder="Enter Email">
+
+      <button
+        class="login-btn"
+        (click)="forgotPassword()">
+
+        Send Reset Link
+
+      </button>
+
+      <p
+        class="success"
+        *ngIf="successMessage">
+
+        {{ successMessage }}
+
+      </p>
+
+      <p
+        class="error"
+        *ngIf="errorMessage">
+
+        {{ errorMessage }}
+
+      </p>
+
+      <div class="links">
+
+        <a (click)="mode = 'login'">
+          ← Back to Login
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

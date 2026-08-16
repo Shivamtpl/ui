@@ -1,0 +1,178 @@
+<div *ngIf="loading" class="loading">
+  Loading room details...
+</div>
+
+<div *ngIf="!loading && room" class="details-page">
+
+  <div class="container">
+
+    <button class="btn btn-outline-secondary mb-4" (click)="goBack()">
+
+      ← Back to Rooms
+
+    </button>
+
+    <div class="details-card">
+
+      <div class="row g-0">
+
+        <div class="col-lg-6">
+
+          <img [src]="'http://localhost:8080/uploads/' + room.imageUrl" class="room-image" alt="Room">
+
+        </div>
+
+        <div class="col-lg-6">
+
+          <div class="details-content">
+
+            <span class="badge" [class.bg-success]="room.available" [class.bg-danger]="!room.available">
+
+              {{ room.available ? 'Available' : 'Not Available' }}
+
+            </span>
+
+            <h1>{{ room.title }}</h1>
+
+            <p class="location">
+              📍 {{ room.location }}
+            </p>
+
+            <h2 class="rent">
+              ₹{{ room.rent }}
+              <small>/month</small>
+            </h2>
+
+            <div class="info-box">
+
+              <div>
+                <strong>Room Type</strong>
+                <span>{{ room.roomType }}</span>
+              </div>
+
+              <div>
+                <strong>Availability</strong>
+                <span>
+                  {{ room.available ? 'Available Now' : 'Occupied' }}
+                </span>
+              </div>
+
+            </div>
+
+            <h4>About this room</h4>
+
+            <p class="description">
+              {{ room.description }}
+            </p>
+
+            <div class="action-buttons">
+
+              <button class="btn btn-success" [disabled]="!room.available" (click)="openBookingForm()">
+
+                📅 Book Now
+
+              </button>
+
+              <button class="btn" [class.btn-danger]="isFavorite" [class.btn-outline-danger]="!isFavorite"
+                (click)="addToFavorites()">
+
+                {{ isFavorite ? '❤️ Favorited' : '♡ Favorite' }}
+
+              </button>
+
+              <button class="btn btn-primary" [routerLink]="['/chat', room.ownerEmail]">
+
+                💬 Chat with Owner
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- BOOKING MODAL: KEEP THIS OUTSIDE THE ROOM CARD -->
+
+<div class="booking-overlay" *ngIf="showBookingForm">
+
+  <div class="booking-modal">
+
+    <button class="close-btn" (click)="closeBookingForm()">
+
+      ×
+
+    </button>
+
+    <h2>Book This Room</h2>
+
+    <p class="selected-room">
+      {{ room.title }}
+    </p>
+
+    <div class="form-group">
+
+      <label>Full Name</label>
+
+      <input type="text" [(ngModel)]="customerName" placeholder="Enter your name">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Email</label>
+
+      <input type="email" [(ngModel)]="customerEmail" placeholder="Enter your email">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Phone Number</label>
+
+      <input type="text" [(ngModel)]="customerPhone" placeholder="Enter phone number">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Booking Date</label>
+
+      <input type="date" [(ngModel)]="bookingDate">
+
+    </div>
+
+    <p class="success-message" *ngIf="bookingSuccess">
+
+      {{ bookingSuccess }}
+
+    </p>
+
+    <p class="error-message" *ngIf="bookingError">
+
+      {{ bookingError }}
+
+    </p>
+
+    <button class="confirm-btn" (click)="confirmBooking()">
+
+      Confirm Booking
+
+    </button>
+
+  </div>
+  <p class="favorite-message" *ngIf="favoriteMessage">
+
+    {{ favoriteMessage }}
+
+  </p>
+</div>

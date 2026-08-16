@@ -1,0 +1,142 @@
+<div class="my-rooms-page">
+
+  <div class="container">
+
+    <div class="page-header">
+
+      <div>
+
+        <span class="eyebrow">
+          OWNER DASHBOARD
+        </span>
+
+        <h1>My Rooms</h1>
+
+        <p>
+          Manage your listed properties.
+        </p>
+
+      </div>
+
+      <button
+        class="add-room-btn"
+        (click)="addRoom()">
+
+        + Add New Room
+
+      </button>
+
+    </div>
+
+    <div
+      *ngIf="loading"
+      class="loading">
+
+      Loading your rooms...
+
+    </div>
+
+    <div
+      *ngIf="!loading && rooms.length === 0"
+      class="empty-state">
+
+      <h2>No rooms listed yet</h2>
+
+      <p>
+        Add your first room to start receiving bookings.
+      </p>
+
+      <button
+        class="add-room-btn"
+        (click)="addRoom()">
+
+        Add Your First Room
+
+      </button>
+
+    </div>
+
+    <div
+      class="rooms-grid"
+      *ngIf="!loading && rooms.length > 0">
+
+      <div
+        class="room-card"
+        *ngFor="let room of rooms">
+
+        <div class="image-wrapper">
+
+          <img
+            [src]="
+              'http://localhost:8080/uploads/' +
+              room.imageUrl
+            "
+            alt="Room">
+
+          <span
+            class="availability"
+            [class.available]="room.available"
+            [class.unavailable]="!room.available">
+
+            {{
+              room.available
+                ? 'Available'
+                : 'Not Available'
+            }}
+
+          </span>
+
+        </div>
+
+        <div class="room-content">
+
+          <h2>
+            {{ room.title }}
+          </h2>
+
+          <p class="location">
+            📍 {{ room.location }}
+          </p>
+
+          <span class="room-type">
+            {{ room.roomType }}
+          </span>
+
+          <div class="room-footer">
+
+            <strong>
+              ₹{{ room.rent }}
+              <small>/month</small>
+            </strong>
+
+            <div class="actions">
+
+              <button
+                class="edit-btn"
+                (click)="editRoom(room.id)">
+
+                ✏️ Edit
+
+              </button>
+
+              <button
+                class="delete-btn"
+                (click)="deleteRoom(room.id)">
+
+                🗑️ Delete
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

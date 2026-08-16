@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+
+<app-hero></app-hero>
+
+<app-search-filter
+  (filterChanged)="applyFilter($event)">
+</app-search-filter>
+
+<div class="container mt-5">
+
+  <div class="row">
+
+    <div
+      class="col-lg-4 col-md-6 mb-4"
+      *ngFor="let room of filteredRooms">
+
+      <app-room-card
+        [room]="room">
+      </app-room-card>
+
+    </div>
+
+  </div>
+
+</div>
+
+<app-footer></app-footer>
