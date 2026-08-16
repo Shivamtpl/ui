@@ -1,0 +1,51 @@
+<div class="dashboard">
+
+    <h1>Badcow Admin Dashboard</h1>
+
+    <div
+      *ngIf="loading"
+      class="loading">
+
+      Loading Dashboard...
+
+    </div>
+
+    <div
+      *ngIf="!loading"
+      class="cards">
+
+        <div class="card users">
+
+            <h2>{{dashboard?.totalUsers}}</h2>
+
+            <p>Users</p>
+
+        </div>
+
+        <div class="card rooms">
+
+            <h2>{{dashboard?.totalRooms}}</h2>
+
+            <p>Rooms</p>
+
+        </div>
+
+        <div class="card bookings">
+
+            <h2>{{dashboard?.totalBookings}}</h2>
+
+            <p>Bookings</p>
+
+        </div>
+
+        <div class="card favorites">
+
+            <h2>{{dashboard?.totalFavorites}}</h2>
+
+            <p>Favorites</p>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+body{
+    background:#f5f7fb;
+}
+
+.room-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.room-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
+
+.room-img{
+    height:230px;
+    object-fit:cover;
+}
+
+.card-body{
+    text-align:center;
+}
+
+.btn{
+    border-radius:10px;
+}

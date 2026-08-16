@@ -1,0 +1,149 @@
+<div class="bookings-page">
+
+  <div class="container">
+
+    <div class="page-header">
+
+      <div>
+
+        <span class="eyebrow">
+          OWNER DASHBOARD
+        </span>
+
+        <h1>Booking Requests</h1>
+
+        <p>
+          Manage customers who requested your rooms.
+        </p>
+
+      </div>
+
+      <div class="booking-count">
+
+        {{ bookings.length }}
+
+        <span>Total Requests</span>
+
+      </div>
+
+    </div>
+
+    <div
+      *ngIf="loading"
+      class="loading">
+
+      Loading booking requests...
+
+    </div>
+
+    <div
+      *ngIf="!loading && bookings.length === 0"
+      class="empty-state">
+
+      <h2>No Booking Requests</h2>
+
+      <p>
+        You don't have any booking requests yet.
+      </p>
+
+    </div>
+
+    <div
+      class="booking-list"
+      *ngIf="!loading && bookings.length > 0">
+
+      <div
+        class="booking-card"
+        *ngFor="let booking of bookings">
+
+        <div class="booking-room">
+
+          <img
+            [src]="
+              'http://localhost:8080/uploads/' +
+              booking.room.imageUrl
+            "
+            alt="Room">
+
+          <div>
+
+            <h2>
+              {{ booking.room.title }}
+            </h2>
+
+            <p>
+              📍 {{ booking.room.location }}
+            </p>
+
+            <strong>
+              ₹{{ booking.room.rent }}/month
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="customer-details">
+
+          <h3>Customer Details</h3>
+
+          <p>
+            👤 {{ booking.customerName }}
+          </p>
+
+          <p>
+            ✉️ {{ booking.customerEmail }}
+          </p>
+
+          <p>
+            📞 {{ booking.customerPhone }}
+          </p>
+
+          <p>
+            📅 {{ booking.bookingDate }}
+          </p>
+
+        </div>
+
+       <div class="status-section">
+
+  <span
+    class="status"
+    [class.pending]="booking.status === 'PENDING'"
+    [class.approved]="booking.status === 'APPROVED'"
+    [class.rejected]="booking.status === 'REJECTED'">
+
+    {{ booking.status }}
+
+  </span>
+
+  <div
+    class="booking-actions"
+    *ngIf="booking.status === 'PENDING'">
+
+    <button
+      class="approve-btn"
+      (click)="approveBooking(booking.id)">
+
+      ✅ Approve
+
+    </button>
+
+    <button
+      class="reject-btn"
+      (click)="rejectBooking(booking.id)">
+
+      ❌ Reject
+
+    </button>
+
+  </div>
+
+</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

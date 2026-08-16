@@ -1,0 +1,249 @@
+<div class="my-bookings-page">
+
+  <div class="container">
+
+    <div class="page-header">
+
+      <div>
+
+        <span class="eyebrow">
+          CUSTOMER DASHBOARD
+        </span>
+
+        <h1>My Bookings</h1>
+
+        <p>
+          Track all your room booking requests.
+        </p>
+
+      </div>
+
+      <div class="booking-count">
+
+        <strong>
+          {{ bookings.length }}
+        </strong>
+
+        <span>
+          Total Bookings
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Loading -->
+
+    <div
+      *ngIf="loading"
+      class="loading">
+
+      <div class="spinner"></div>
+
+      Loading your bookings...
+
+    </div>
+
+
+    <!-- Error -->
+
+    <div
+      *ngIf="!loading && errorMessage"
+      class="error-message">
+
+      {{ errorMessage }}
+
+    </div>
+
+
+    <!-- Empty State -->
+
+    <div
+      *ngIf="
+        !loading &&
+        !errorMessage &&
+        bookings.length === 0
+      "
+      class="empty-state">
+
+      <div class="empty-icon">
+        📅
+      </div>
+
+      <h2>No Bookings Yet</h2>
+
+      <p>
+        You haven't booked any rooms yet.
+      </p>
+
+      <a
+        routerLink="/home"
+        class="browse-btn">
+
+        Browse Rooms
+
+      </a>
+
+    </div>
+
+
+    <!-- Booking List -->
+
+    <div
+      *ngIf="
+        !loading &&
+        bookings.length > 0
+      "
+      class="booking-list">
+
+
+      <div
+        class="booking-card"
+        *ngFor="
+          let booking of bookings
+        ">
+
+
+        <!-- Room Image -->
+
+        <div class="room-image">
+
+          <img
+            [src]="
+              'http://localhost:8080/uploads/' +
+              booking.room.imageUrl
+            "
+            alt="Room">
+
+        </div>
+
+
+        <!-- Room Details -->
+
+        <div class="room-details">
+
+          <span class="room-type">
+
+            {{ booking.room.roomType }}
+
+          </span>
+
+          <h2>
+
+            {{ booking.room.title }}
+
+          </h2>
+
+          <p class="location">
+
+            📍 {{ booking.room.location }}
+
+          </p>
+
+          <p class="rent">
+
+            ₹{{ booking.room.rent }}
+
+            <span>
+              /month
+            </span>
+
+          </p>
+
+        </div>
+
+
+        <!-- Booking Details -->
+
+        <div class="booking-details">
+
+          <h3>
+            Booking Details
+          </h3>
+
+          <p>
+
+            <strong>
+              Booking Date:
+            </strong>
+
+            {{ booking.bookingDate }}
+
+          </p>
+
+          <p>
+
+            <strong>
+              Customer:
+            </strong>
+
+            {{ booking.customerName }}
+
+          </p>
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="status-area">
+
+          <span
+            class="status-badge"
+            [class.pending]="
+              booking.status === 'PENDING'
+            "
+            [class.approved]="
+              booking.status === 'APPROVED'
+            "
+            [class.rejected]="
+              booking.status === 'REJECTED'
+            ">
+
+            {{ booking.status }}
+
+          </span>
+
+
+          <p
+            *ngIf="
+              booking.status === 'PENDING'
+            "
+            class="status-text">
+
+            Waiting for owner approval
+
+          </p>
+
+
+          <p
+            *ngIf="
+              booking.status === 'APPROVED'
+            "
+            class="status-text">
+
+            Your booking has been approved 🎉
+
+          </p>
+
+
+          <p
+            *ngIf="
+              booking.status === 'REJECTED'
+            "
+            class="status-text">
+
+            This booking was rejected
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

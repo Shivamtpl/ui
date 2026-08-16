@@ -1,0 +1,91 @@
+.dashboard{
+
+    padding:40px;
+    background:#f5f7fb;
+    min-height:100vh;
+
+}
+
+h1{
+
+    margin-bottom:35px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:25px;
+
+}
+
+.card{
+
+    padding:30px;
+
+    border-radius:18px;
+
+    color:white;
+
+    text-align:center;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.users{
+
+    background:#2563eb;
+
+}
+
+.rooms{
+
+    background:#059669;
+
+}
+
+.bookings{
+
+    background:#ea580c;
+
+}
+
+.favorites{
+
+    background:#db2777;
+
+}
+
+.card h2{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+.card p{
+
+    font-size:18px;
+
+}
+
+.loading{
+
+    font-size:20px;
+
+    text-align:center;
+
+}

@@ -1,0 +1,133 @@
+<div class="favorites-page">
+
+  <div class="favorites-container">
+
+    <button
+      class="back-btn"
+      (click)="goBack()">
+
+      ← Back to Home
+
+    </button>
+
+    <div class="page-header">
+
+      <div>
+
+        <span class="eyebrow">
+          YOUR COLLECTION
+        </span>
+
+        <h1>My Favorites ❤️</h1>
+
+        <p>
+          Rooms you saved for later.
+        </p>
+
+      </div>
+
+      <div class="favorite-count">
+
+        {{ favorites.length }}
+
+        <span>Saved Rooms</span>
+
+      </div>
+
+    </div>
+
+    <div
+      *ngIf="loading"
+      class="loading">
+
+      Loading your favorite rooms...
+
+    </div>
+
+    <div
+      *ngIf="!loading && favorites.length === 0"
+      class="empty-state">
+
+      <div class="empty-icon">
+        ♡
+      </div>
+
+      <h2>No favorite rooms yet</h2>
+
+      <p>
+        Click the heart button on a room to save it here.
+      </p>
+
+      <button
+        class="browse-btn"
+        (click)="goBack()">
+
+        Browse Rooms
+
+      </button>
+
+    </div>
+
+    <div
+      class="favorites-grid"
+      *ngIf="!loading && favorites.length > 0">
+
+      <div
+        class="favorite-card"
+        *ngFor="let favorite of favorites">
+
+        <div class="room-image">
+
+          <img
+            [src]="
+              'http://localhost:8080/uploads/' +
+              favorite.room.imageUrl
+            "
+            alt="Room">
+
+          <span class="heart">
+            ❤️
+          </span>
+
+        </div>
+
+        <div class="room-content">
+
+          <h2>
+            {{ favorite.room.title }}
+          </h2>
+
+          <p class="location">
+            📍 {{ favorite.room.location }}
+          </p>
+
+          <p class="room-type">
+            {{ favorite.room.roomType }}
+          </p>
+
+          <div class="room-footer">
+
+            <strong>
+              ₹{{ favorite.room.rent }}
+              <small>/month</small>
+            </strong>
+
+            <button
+              class="view-btn"
+              (click)="viewRoom(favorite.room.id)">
+
+              View Room
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

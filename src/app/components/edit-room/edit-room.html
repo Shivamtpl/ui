@@ -1,0 +1,171 @@
+<div class="edit-page">
+
+  <div class="edit-container">
+
+    <button
+      class="back-btn"
+      (click)="cancel()">
+
+      ← Back to My Rooms
+
+    </button>
+
+    <div
+      *ngIf="loading"
+      class="loading">
+
+      Loading room...
+
+    </div>
+
+    <div
+      *ngIf="!loading && room"
+      class="edit-card">
+
+      <div class="page-header">
+
+        <span class="eyebrow">
+          OWNER DASHBOARD
+        </span>
+
+        <h1>Edit Room</h1>
+
+        <p>
+          Update your room details.
+        </p>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Room Title</label>
+
+        <input
+          type="text"
+          [(ngModel)]="room.title">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Location</label>
+
+        <input
+          type="text"
+          [(ngModel)]="room.location">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Monthly Rent</label>
+
+        <input
+          type="number"
+          [(ngModel)]="room.rent">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Room Type</label>
+
+        <select
+          [(ngModel)]="room.roomType">
+
+          <option value="Single">
+            Single Room
+          </option>
+
+          <option value="1BHK">
+            1BHK
+          </option>
+
+          <option value="2BHK">
+            2BHK
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Description</label>
+
+        <textarea
+          [(ngModel)]="room.description">
+        </textarea>
+
+      </div>
+
+      <div class="form-group availability-group">
+
+        <label>Availability</label>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            [(ngModel)]="room.available">
+
+          <span class="slider"></span>
+
+        </label>
+
+        <span>
+          {{
+            room.available
+              ? 'Available'
+              : 'Not Available'
+          }}
+        </span>
+
+      </div>
+
+      <p
+        class="success"
+        *ngIf="message">
+
+        {{ message }}
+
+      </p>
+
+      <p
+        class="error"
+        *ngIf="errorMessage">
+
+        {{ errorMessage }}
+
+      </p>
+
+      <div class="form-actions">
+
+        <button
+          class="cancel-btn"
+          (click)="cancel()">
+
+          Cancel
+
+        </button>
+
+        <button
+          class="save-btn"
+          [disabled]="saving"
+          (click)="updateRoom()">
+
+          {{
+            saving
+              ? 'Saving...'
+              : 'Save Changes'
+          }}
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

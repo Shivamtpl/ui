@@ -1,0 +1,103 @@
+<div class="filter-section">
+
+  <div class="filter-header">
+
+    <div>
+      <span class="eyebrow">DISCOVER YOUR NEXT HOME</span>
+
+      <h2>Find a room that feels right.</h2>
+
+      <p>Search verified rooms by location, budget, and type.</p>
+    </div>
+
+    <button
+      type="button"
+      class="clear-btn"
+      (click)="clearFilter()">
+
+      Clear all
+
+    </button>
+
+  </div>
+
+  <div class="filter-grid">
+
+    <div class="search-field search-field-wide">
+
+      <label>Search</label>
+
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Room title or keyword">
+
+    </div>
+
+    <div class="search-field">
+
+      <label>Location</label>
+
+      <input
+        type="text"
+        [(ngModel)]="location"
+        placeholder="e.g. Hyderabad">
+
+    </div>
+
+    <div class="search-field">
+
+      <label>Room type</label>
+
+      <select [(ngModel)]="roomType">
+
+        <option value="">All types</option>
+
+        <option value="Single">Single</option>
+
+        <option value="1 BHK">1 BHK</option>
+
+        <option value="2 BHK">2 BHK</option>
+
+        <option value="Studio">Studio</option>
+
+      </select>
+
+    </div>
+
+    <div class="search-field">
+
+      <label>Minimum rent</label>
+
+      <input
+        type="number"
+        [(ngModel)]="minRent"
+        placeholder="₹ Minimum">
+
+    </div>
+
+    <div class="search-field">
+
+      <label>Maximum rent</label>
+
+      <input
+        type="number"
+        [(ngModel)]="maxRent"
+        placeholder="₹ Maximum">
+
+    </div>
+
+    <button
+      type="button"
+      class="search-btn"
+      (click)="applyFilter()">
+
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      Search rooms
+
+    </button>
+
+  </div>
+
+</div>
